@@ -12,7 +12,7 @@ fi
 logsid=`docker ps | grep logstash | awk '{print $1}'`
 if [ -z "$logsid" ]; then
     echo -n "Starting logstash... "
-    docker run -d --link $elasticid:elasticsearch --rm -it -v ~/logstash-pipelines/:/usr/share/logstash/pipeline/ --name logstash -p 5000:5000/udp -p 5001:5001 docker.elastic.co/logstash/logstash:7.6.2
+    docker run -d --link $elasticid:elasticsearch --rm -it -v ~/logstash-pipelines/:/usr/share/logstash/pipeline/ --name logstash -p 5000:5000 -p 5001:5001 docker.elastic.co/logstash/logstash:7.6.2
 else
     echo "logstash already running... $logsid"
 fi
